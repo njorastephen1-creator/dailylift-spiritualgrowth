@@ -1,0 +1,88 @@
+<style>
+/* ---------- General ---------- */
+* { box-sizing: border-box; }
+body, html {
+    margin:0; padding:0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:#e0f7fa; color:#004d40;
+    min-height:100vh; overflow-x:hidden;
+    transition: all 0.3s ease;
+}
+
+.dark-mode { background:#1a1a1a; color:#f0f0f0; }
+
+/* ---------- Container ---------- */
+.container { max-width: 800px; margin: auto; padding: 20px; }
+
+/* ---------- Header ---------- */
+header { display:flex; justify-content: space-between; align-items:center; margin-bottom:20px; }
+header h1 { font-size:2rem; margin:0; color:#00796b; }
+header a.notesLink {
+    text-decoration:none; padding:6px 12px; background:#00796b; color:white; border-radius:6px; transition: all 0.2s;
+}
+header a.notesLink:hover { background:#004d40; }
+
+/* ---------- Buttons ---------- */
+button {
+    cursor:pointer; padding:8px 15px; border:none; border-radius:6px;
+    background:#00796b; color:white; font-weight:600; margin:5px 0; transition: all 0.2s;
+}
+button:hover { background:#004d40; }
+
+/* ---------- Cards ---------- */
+.card {
+    background:white; padding:20px; margin:15px 0; border-radius:10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); transition: all 0.3s ease;
+}
+.dark-mode .card { background:#333; color:#f0f0f0; }
+
+/* ---------- Date/Time ---------- */
+#dateTime {
+    font-weight:bold; text-align:center; font-size:1rem;
+    background:#b2dfdb; color:#004d40; padding:5px; border-radius:6px;
+}
+.dark-mode #dateTime { background:#004d40; color:#b2dfdb; }
+
+/* ---------- Bubbles Animation ---------- */
+#bubbles { position:absolute; width:100%; height:100%; pointer-events:none; top:0; left:0; overflow:hidden; z-index:-1; }
+.bubble { position:absolute; border-radius:50%; background:rgba(0,150,136,0.3); width:15px; height:15px; animation-name:bubbleUp; animation-timing-function:linear; }
+@keyframes bubbleUp { from { transform:translateY(100vh); opacity:1; } to { transform:translateY(-50px); opacity:0; } }
+
+/* ---------- History ---------- */
+#history { max-height:250px; overflow-y:auto; }
+#history p {
+    display:flex; justify-content: space-between; align-items:center; padding:5px 0; border-bottom:1px solid #ccc;
+}
+#history button.delBtn { background:#c62828; padding:2px 6px; font-size:0.8rem; }
+#history button.delBtn:hover { background:#8e0000; }
+.histText { cursor:pointer; color:#00796b; }
+.dark-mode .histText { color:#4dd0e1; }
+.histText:hover { text-decoration:underline; }
+
+/* ---------- Notes Page ---------- */
+#noteTitle { width:100%; padding:10px; font-size:1rem; margin-bottom:10px; border-radius:6px; border:1px solid #00796b; }
+
+.toolbar button { padding:6px 10px; margin:0 3px; font-weight:bold; background:#004d40; border-radius:5px; }
+.toolbar button:hover { background:#00796b; }
+
+#noteContent {
+    min-height:200px; padding:15px; border:1px solid #00796b; border-radius:8px;
+    margin-bottom:10px; overflow:auto; background:#f1f8f7;
+}
+.dark-mode #noteContent { background:#444; color:#f0f0f0; border-color:#4dd0e1; }
+
+.noteItem {
+    background:#b2dfdb; margin:10px 0; padding:10px; border-radius:8px; transition:0.3s; display:flex; justify-content:space-between; align-items:center;
+}
+.dark-mode .noteItem { background:#004d40; }
+.noteItem strong { font-size:1rem; color:#004d40; }
+.dark-mode .noteItem strong { color:#b2dfdb; }
+.noteItem button { background:#00796b; padding:3px 6px; font-size:0.8rem; margin-left:5px; border-radius:5px; }
+.noteItem button:hover { background:#004d40; }
+.noteContent { margin-top:5px; }
+
+/* ---------- Scrollbars ---------- */
+#history::-webkit-scrollbar, #notesList::-webkit-scrollbar, #noteContent::-webkit-scrollbar { width:6px; }
+#history::-webkit-scrollbar-thumb, #notesList::-webkit-scrollbar-thumb, #noteContent::-webkit-scrollbar-thumb { background:#00796b; border-radius:3px; }
+.dark-mode #history::-webkit-scrollbar-thumb, .dark-mode #notesList::-webkit-scrollbar-thumb, .dark-mode #noteContent::-webkit-scrollbar-thumb { background:#4dd0e1; }
+</style>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Lift — Notes</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#eef2f5; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  header { display:flex; justify-content: space-between; align-items:center; margin-bottom: 20px; }
+  header h1 { margin:0; font-size: 24px; }
+  header .notesLink { text-decoration:none; background:#007BFF; color:white; padding:8px 14px; border-radius:6px; transition: 0.2s; }
+  header .notesLink:hover { background:#0056b3; }
+
+  #noteTitle, #searchNotes { width:100%; padding:10px; font-size:16px; margin-bottom:10px; border-radius:6px; border:1px solid #ccc; }
+
+  .toolbar { display:flex; flex-wrap: wrap; gap:5px; margin-bottom:10px; }
+  .toolbar button, .toolbar select, .toolbar input[type=color] { padding:6px 10px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #ccc; background:white; transition:0.2s; }
+  .toolbar button:hover, .toolbar select:hover, .toolbar input[type=color]:hover { background:#f0f0f0; }
+
+  #noteContent { min-height:180px; border:1px solid #ccc; padding:10px; background:white; margin-bottom:10px; border-radius:6px; overflow:auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+  #saveNoteBtn { padding:10px 16px; font-size:16px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer; margin-bottom:10px; transition:0.2s; }
+  #saveNoteBtn:hover { background:#218838; }
+
+  #notesList { background:white; padding:10px; border:1px solid #ccc; border-radius:6px; max-height:350px; overflow-y:auto; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+  .noteItem { border-bottom:1px solid #ddd; padding:8px 0; cursor:pointer; transition:0.2s; }
+  .noteItem:hover { background:#f8f9fa; }
+  .noteItem button { margin-left:5px; padding:3px 7px; font-size:12px; cursor:pointer; border-radius:4px; border:none; background:#007BFF; color:white; transition:0.2s; }
+  .noteItem button:hover { background:#0056b3; }
+  .noteContent { display:none; }
+
+  #charCount { font-size:14px; color:#555; margin-bottom:10px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>My Notes</h1>
+    <a href="index.html" class="notesLink">Back</a>
+  </header>
+
+  <main>
+    <input type="text" id="noteTitle" placeholder="Enter note title">
+
+    <div class="toolbar">
+      <button onclick="format('bold')"><b>B</b></button>
+      <button onclick="format('italic')"><i>I</i></button>
+      <button onclick="format('underline')"><u>U</u></button>
+      <button onclick="undo()">↺ Undo</button>
+      <button onclick="redo()">↻ Redo</button>
+      <button onclick="copyText()">Copy</button>
+      <button onclick="cutText()">Cut</button>
+      <button onclick="selectAll()">Select All</button>
+
+      <select onchange="setFontSize(this.value)">
+        <option value="">Font Size</option>
+        <option value="1">10px</option>
+        <option value="2">13px</option>
+        <option value="3">16px</option>
+        <option value="4">18px</option>
+        <option value="5">24px</option>
+        <option value="6">32px</option>
+        <option value="7">48px</option>
+      </select>
+
+      <input type="color" onchange="setFontColor(this.value)" title="Font Color">
+      <input type="color" onchange="setBgColor(this.value)" title="Background Color">
+    </div>
+
+    <div contenteditable="true" id="noteContent" placeholder="Write your note here..."></div>
+    <p id="charCount">Characters: 0</p>
+
+    <button id="saveNoteBtn">Save Note</button>
+
+    <input type="text" id="searchNotes" placeholder="Search notes..." onkeyup="searchNotesFunc()">
+
+    <div id="notesList">
+      <p>No notes yet.</p>
+    </div>
+  </main>
+</div>
+
+<script src="notes.js"></script>
+</body>
+</html>

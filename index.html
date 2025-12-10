@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Lift — Bible</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Lift</h1>
+    <div>
+      <button id="themeToggle">Dark</button>
+      <a href="notes.html" class="notesLink">Notes</a>
+    </div>
+  </header>
+
+  <main>
+    <div id="dateTime" class="card">
+      <p id="currentDateTime"></p>
+    </div>
+
+    <button id="getBtn">Get Today’s Blessing</button>
+
+    <div id="output" class="card">
+      <p>Press "Get Today’s Blessing" to show today's entry.</p>
+    </div>
+
+    <button id="shareBtn">Share Blessing</button>
+
+    <div id="history" class="card">
+      <p>No history yet.</p>
+    </div>
+  </main>
+
+  <div id="bubbles"></div>
+</div>
+
+<script src="bibleBlessings.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
