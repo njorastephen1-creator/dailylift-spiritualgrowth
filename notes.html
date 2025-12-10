@@ -3,183 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Lift — Notes</title>
+<title>My Notes</title>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#eef2f5; transition: background 0.3s, color 0.3s;}
-  body.dark-mode { background:#1a1a1a; color:#ddd; }
-  .container { max-width: 900px; margin:auto; padding:20px; }
-  header { display:flex; justify-content: space-between; align-items:center; margin-bottom: 20px; }
-  header h1 { margin:0; font-size:24px; }
-  header .notesLink { text-decoration:none; background:#007BFF; color:white; padding:8px 14px; border-radius:6px; }
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#eef2f5; color:#222; transition:0.3s;}
+body.dark-mode { background:#1a1a1a; color:#ddd;}
+.container { max-width:900px; margin:auto; padding:20px;}
+header { display:flex; justify-content: space-between; align-items:center; margin-bottom:20px; }
+header h1 { margin:0; font-size:24px; }
+header .topBtns button, header .topBtns a { margin-left:10px; padding:6px 12px; border-radius:6px; border:none; cursor:pointer; text-decoration:none; color:white;}
+header .topBtns a { background:#007BFF;}
+header .topBtns a:hover { background:#0056b3;}
+header .topBtns button { background:#007BFF;} 
+header .topBtns button:hover { background:#0056b3;}
 
-  #noteTitle, #searchNotes {
-    width:100%; padding:10px; font-size:16px; margin-bottom:10px;
-    border-radius:6px; border:1px solid #ccc;
-  }
+#noteTitle, #searchNotes { width:100%; padding:10px; font-size:16px; margin-bottom:10px; border-radius:6px; border:1px solid #ccc; }
+.toolbar { display:flex; flex-wrap: wrap; gap:5px; margin-bottom:10px;}
+.toolbar button, .toolbar select, .toolbar input[type=color] { padding:6px 10px; font-size:14px; cursor:pointer; border-radius:4px; border:1px solid #ccc; background:white; transition:0.2s; }
+.toolbar button:hover, .toolbar select:hover, .toolbar input[type=color]:hover { background:#f0f0f0; }
 
-  .toolbar { display:flex; flex-wrap: wrap; gap:5px; margin-bottom:10px; }
-  .toolbar button, .toolbar select, .toolbar input[type=color] {
-    padding:6px 10px; font-size:14px; cursor:pointer; border-radius:4px;
-    border:1px solid #ccc; background:white; transition:0.2s;
-  }
-  .toolbar button:hover, .toolbar select:hover, .toolbar input[type=color]:hover { background:#f0f0f0; }
+#noteContent { min-height:180px; border:1px solid #ccc; padding:10px; background:white; border-radius:6px; overflow:auto; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
+body.dark-mode #noteContent { background:#333; color:#ddd; }
+#noteContent:empty:before { content: attr(placeholder); color:#888; }
 
-  #noteContent {
-    min-height:180px; border:1px solid #ccc; padding:10px;
-    background:white; border-radius:6px; overflow:auto;
-    box-shadow:0 2px 5px rgba(0,0,0,0.05);
-  }
-  body.dark-mode #noteContent { background:#333; color:#ddd; }
+#saveNoteBtn { padding:10px 16px; font-size:16px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer; transition:0.2s; margin-bottom:10px;}
+#saveNoteBtn:hover { background:#218838; }
 
-  #noteContent:empty:before {
-    content: attr(placeholder);
-    color:#888;
-  }
+#notesList { background:white; padding:10px; border:1px solid #ccc; border-radius:6px; max-height:350px; overflow-y:auto; box-shadow:0 2px 5px rgba(0,0,0,0.05);}
+body.dark-mode #notesList { background:#333; color:#ddd; border-color:#555; }
+.noteItem { border-bottom:1px solid #ddd; padding:8px 0; cursor:pointer; transition:0.2s; }
+.noteItem:hover { background:#f8f9fa; }
+body.dark-mode .noteItem:hover { background:#444; }
+.noteItem button, .noteItem a { margin-left:5px; padding:3px 7px; font-size:12px; cursor:pointer; border-radius:4px; border:none; background:#007BFF; color:white; transition:0.2s; text-decoration:none;}
+.noteItem button:hover, .noteItem a:hover { background:#0056b3; }
 
-  #saveNoteBtn { padding:10px 16px; font-size:16px; background:#28a745; color:white; border:none; border-radius:6px; cursor:pointer; transition:0.2s; }
-  #saveNoteBtn:hover { background:#218838; }
-
-  #notesList { background:white; padding:10px; border:1px solid #ccc; border-radius:6px; max-height:350px; overflow-y:auto; box-shadow:0 2px 5px rgba(0,0,0,0.05);}
-  body.dark-mode #notesList { background:#333; color:#ddd; border-color:#555; }
-
-  .noteItem { border-bottom:1px solid #ddd; padding:8px 0; cursor:pointer; transition:0.2s; }
-  .noteItem:hover { background:#f8f9fa; }
-  body.dark-mode .noteItem:hover { background:#444; }
-  .noteItem button { margin-left:5px; padding:3px 7px; font-size:12px; cursor:pointer; border-radius:4px; border:none; background:#007BFF; color:white; transition:0.2s; }
-  .noteItem button:hover { background:#0056b3; }
-
-  #charCount { font-size:14px; color:#555; margin-bottom:10px; }
+#charCount { font-size:14px; color:#555; margin-bottom:10px; }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <header>
-    <h1>My Notes</h1>
-    <div>
-      <a href="index.html" class="notesLink">Back</a>
-      <button onclick="toggleDarkMode()" style="margin-left:10px;">🌙 Dark Mode</button>
-    </div>
-  </header>
+<header>
+<h1>My Notes</h1>
+<div class="topBtns">
+    <a href="#" onclick="history.back(); return false;">Back</a>
+    <button onclick="toggleDarkMode()"> Dark Mode</button>
+</div>
+</header>
 
-  <input type="text" id="noteTitle" placeholder="Enter note title">
+<input type="text" id="noteTitle" placeholder="Enter note title">
 
-  <div class="toolbar">
-    <button onclick="format('bold')"><b>B</b></button>
-    <button onclick="format('italic')"><i>I</i></button>
-    <button onclick="format('underline')"><u>U</u></button>
-    <button onclick="undo()">↺ Undo</button>
-    <button onclick="redo()">↻ Redo</button>
-    <button onclick="copyText()">Copy</button>
-    <button onclick="cutText()">Cut</button>
-    <button onclick="selectAll()">Select All</button>
+<div class="toolbar">
+<button onclick="format('bold')"><b>B</b></button>
+<button onclick="format('italic')"><i>I</i></button>
+<button onclick="format('underline')"><u>U</u></button>
+<button onclick="undo()">↺ Undo</button>
+<button onclick="redo()">↻ Redo</button>
+<button onclick="copyText()">Copy</button>
+<button onclick="cutText()">Cut</button>
+<button onclick="selectAll()">Select All</button>
 
-    <select onchange="setFontSize(this.value)">
-      <option value="">Font Size</option>
-      <option value="1">10px</option>
-      <option value="2">13px</option>
-      <option value="3">16px</option>
-      <option value="4">18px</option>
-      <option value="5">24px</option>
-      <option value="6">32px</option>
-      <option value="7">48px</option>
-    </select>
+<select onchange="setFontSize(this.value)">
+<option value="">Font Size</option>
+<option value="1">10px</option>
+<option value="2">13px</option>
+<option value="3">16px</option>
+<option value="4">18px</option>
+<option value="5">24px</option>
+<option value="6">32px</option>
+<option value="7">48px</option>
+</select>
 
-    <select onchange="setFontFamily(this.value)">
-      <option value="">Font Family</option>
-      <option value="Arial">Arial</option>
-      <option value="Tahoma">Tahoma</option>
-      <option value="Verdana">Verdana</option>
-      <option value="Courier New">Courier New</option>
-      <option value="Times New Roman">Times New Roman</option>
-    </select>
+<select onchange="setFontFamily(this.value)">
+<option value="">Font Family</option>
+<option value="Arial">Arial</option>
+<option value="Tahoma">Tahoma</option>
+<option value="Verdana">Verdana</option>
+<option value="Courier New">Courier New</option>
+<option value="Times New Roman">Times New Roman</option>
+</select>
 
-    <input type="color" onchange="setFontColor(this.value)" title="Font Color">
-    <input type="color" onchange="setBgColor(this.value)" title="Background Color">
-  </div>
-
-  <div contenteditable="true" id="noteContent" placeholder="Write your note here..."><br></div>
-  <p id="charCount">Characters: 0</p>
-
-  <button id="saveNoteBtn">Save Note</button>
-
-  <input type="text" id="searchNotes" placeholder="Search notes...">
-
-  <div id="notesList"><p>No notes yet.</p></div>
+<input type="color" onchange="setFontColor(this.value)" title="Font Color">
+<input type="color" onchange="setBgColor(this.value)" title="Background Color">
 </div>
 
-<script src="notes.js"></script>
+<div contenteditable="true" id="noteContent" placeholder="Write your note here..."></div>
+<p id="charCount">Characters: 0</p>
+
+<button id="saveNoteBtn">Save Note</button>
+
+<input type="text" id="searchNotes" placeholder="Search notes...">
+
+<div id="notesList"><p>No notes yet.</p></div>
+</div>
+
 <script>
-  // ---------------- Formatting ----------------
-  function format(cmd) { noteContent.focus(); document.execCommand(cmd); }
-  function undo() { format("undo"); }
-  function redo() { format("redo"); }
-  function copyText() { format("copy"); }
-  function cutText() { format("cut"); }
-  function selectAll() { format("selectAll"); }
+// ---------------- Elements ----------------
+const noteTitle = document.getElementById("noteTitle");
+const noteContent = document.getElementById("noteContent");
+const saveNoteBtn = document.getElementById("saveNoteBtn");
+const notesList = document.getElementById("notesList");
+const searchInput = document.getElementById("searchNotes");
+const charCount = document.getElementById("charCount");
 
-  function setFontSize(size) { if(!size) return; noteContent.focus(); document.execCommand("fontSize", false, size); }
-  function setFontColor(color) { if(!color) return; noteContent.focus(); document.execCommand("foreColor", false, color); }
-  function setBgColor(color) { if(!color) return; noteContent.focus(); document.execCommand("hiliteColor", false, color); }
-  function setFontFamily(family) { if(!family) return; noteContent.focus(); document.execCommand("fontName", false, family); }
+let autosaveTimeout;
+let editingIndex = null;
 
-  function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
-
-  // ---------------- Notes ----------------
-  const noteTitle = document.getElementById("noteTitle");
-  const noteContent = document.getElementById("noteContent");
-  const saveNoteBtn = document.getElementById("saveNoteBtn");
-  const notesList = document.getElementById("notesList");
-  const searchInput = document.getElementById("searchNotes");
-  const charCount = document.getElementById("charCount");
-
-  function loadNotes() {
+// ---------------- Notes ----------------
+function loadNotes() {
     const notes = JSON.parse(localStorage.getItem("myNotes") || "[]");
     if (!notes.length) { notesList.innerHTML = "<p>No notes yet.</p>"; return; }
+
     const query = searchInput.value.toLowerCase();
     const filtered = notes.filter(n => n.title.toLowerCase().includes(query) || n.content.toLowerCase().includes(query));
     if (!filtered.length) { notesList.innerHTML="<p>No matching notes found.</p>"; return; }
+
     notesList.innerHTML = "";
     filtered.forEach((note,index)=>{
-      const div=document.createElement("div");
-      div.classList.add("noteItem");
-      div.innerHTML=`<strong>${note.title}</strong> <small>${note.date}</small>
-        <button onclick="editNote(${index})">Edit</button>
-        <button onclick="deleteNote(${index})">Delete</button>`;
-      notesList.appendChild(div);
+        const div=document.createElement("div");
+        div.classList.add("noteItem");
+        div.innerHTML=`
+            <strong>${note.title}</strong> <small>${note.date}</small>
+            <button onclick="editNote(${index})">Edit</button>
+            <button onclick="deleteNote(${index})">Delete</button>
+            <a href="noteRead.html?index=${index}">View</a>
+        `;
+        notesList.appendChild(div);
     });
-  }
+}
 
-  function saveNote() {
+function saveNote() {
     const title = noteTitle.value.trim();
     const content = noteContent.innerHTML.trim();
-    if (!title || !content) return;
-    const notes = JSON.parse(localStorage.getItem("myNotes") || "[]");
-    notes.push({title, content, date:new Date().toLocaleString()});
-    localStorage.setItem("myNotes", JSON.stringify(notes));
-    noteTitle.value=""; noteContent.innerHTML="<br>"; charCount.textContent="Characters: 0";
-    loadNotes();
-  }
+    if(!title || !content) return;
 
-  function editNote(index) {
+    const notes = JSON.parse(localStorage.getItem("myNotes") || "[]");
+    if(editingIndex !== null){
+        notes[editingIndex] = {title, content, date: new Date().toLocaleString()};
+        editingIndex = null;
+    } else {
+        notes.push({title, content, date:new Date().toLocaleString()});
+    }
+
+    localStorage.setItem("myNotes", JSON.stringify(notes));
+    noteTitle.value = "";
+    noteContent.innerHTML = "";
+    charCount.textContent = "Characters: 0";
+    loadNotes();
+}
+
+function editNote(index){
     const notes = JSON.parse(localStorage.getItem("myNotes") || "[]");
     noteTitle.value = notes[index].title;
     noteContent.innerHTML = notes[index].content;
-    notes.splice(index,1); localStorage.setItem("myNotes", JSON.stringify(notes));
-    loadNotes();
-  }
+    editingIndex = index;
+}
 
-  function deleteNote(index) {
+function deleteNote(index){
+    if(!confirm("Are you sure you want to delete this note?")) return;
     const notes = JSON.parse(localStorage.getItem("myNotes") || "[]");
-    notes.splice(index,1); localStorage.setItem("myNotes", JSON.stringify(notes));
+    notes.splice(index,1);
+    localStorage.setItem("myNotes", JSON.stringify(notes));
+    if(editingIndex === index){
+        noteTitle.value="";
+        noteContent.innerHTML="";
+        editingIndex = null;
+        charCount.textContent="Characters: 0";
+    }
     loadNotes();
-  }
+}
 
-  noteContent.addEventListener("input",()=>{ charCount.textContent=`Characters: ${noteContent.innerText.length}`; });
-  saveNoteBtn.addEventListener("click", saveNote);
-  searchInput.addEventListener("keyup", loadNotes);
+// ---------------- Autosave ----------------
+noteContent.addEventListener("input", ()=>{
+    charCount.textContent = `Characters: ${noteContent.innerText.length}`;
+    clearTimeout(autosaveTimeout);
+    autosaveTimeout = setTimeout(()=>{
+        const title = noteTitle.value.trim();
+        const content = noteContent.innerHTML.trim();
+        if(!title || !content) return;
 
-  loadNotes();
+        const notes = JSON.parse(localStorage.getItem("myNotes") || "[]");
+        if(editingIndex !== null){
+            notes[editingIndex] = {title, content, date:new Date().toLocaleString()};
+        } else {
+            notes.push({title, content, date:new Date().toLocaleString()});
+            editingIndex = notes.length - 1;
+        }
+        localStorage.setItem("myNotes", JSON.stringify(notes));
+        loadNotes();
+        console.log("Autosaved note:", title);
+    },1000);
+});
+
+// ---------------- Formatting ----------------
+function format(cmd) { noteContent.focus(); document.execCommand(cmd); }
+function undo() { format("undo"); }
+function redo() { format("redo"); }
+function copyText() { format("copy"); }
+function cutText() { format("cut"); }
+function selectAll() { format("selectAll"); }
+
+function setFontSize(size) { if(!size) return; noteContent.focus(); document.execCommand("fontSize", false, size); }
+function setFontColor(color) { if(!color) return; noteContent.focus(); document.execCommand("foreColor", false, color); }
+function setBgColor(color) { if(!color) return; noteContent.focus(); document.execCommand("hiliteColor", false, color); }
+function setFontFamily(family) { if(!family) return; noteContent.focus(); document.execCommand("fontName", false, family); }
+
+// ---------------- Dark Mode ----------------
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+}
+
+// ---------------- Event Listeners ----------------
+saveNoteBtn.addEventListener("click", saveNote);
+searchInput.addEventListener("keyup", ()=>{
+    clearTimeout(autosaveTimeout);
+    autosaveTimeout = setTimeout(loadNotes, 200);
+});
+
+// Load initial state
+if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark-mode");
+loadNotes();
+
 </script>
 </body>
-</html>
+  </html>
+  
