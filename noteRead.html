@@ -5,15 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Read Note</title>
 <style>
-body { font-family: Arial, sans-serif; margin:0; padding:20px; background:#eef2f5; color:#222; transition:0.3s; }
-body.dark-mode { background:#1a1a1a; color:#ddd;}
-.container { max-width:800px; margin:auto; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-body.dark-mode .container { background:#333; color:#ddd; }
-h1 { font-size:22px; margin-bottom:10px; }
-small { color:#555; }
-#noteContent { border-top:1px solid #ccc; padding-top:10px; margin-top:10px; min-height:200px; word-wrap:break-word; }
-a.backLink { display:inline-block; margin-bottom:10px; text-decoration:none; color:white; background:#007BFF; padding:6px 12px; border-radius:5px;}
-a.backLink:hover { background:#0056b3; }
+body { 
+    font-family: Arial, sans-serif; 
+    margin:0; 
+    padding:20px; 
+    background:#eef2f5; 
+    color:#222; 
+    transition:0.3s; 
+}
+body.dark-mode { 
+    background:#1a1a1a; 
+    color:#ddd;
+}
+.container { 
+    max-width:800px; 
+    margin:auto; 
+    background:white; 
+    padding:20px; 
+    border-radius:8px; 
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+body.dark-mode .container { 
+    background:#333; 
+    color:#ddd; 
+}
+h1 { 
+    font-size:22px; 
+    margin-bottom:10px; 
+}
+small { 
+    color:#555; 
+}
+#noteContent { 
+    border-top:1px solid #ccc; 
+    padding-top:10px; 
+    margin-top:10px; 
+    min-height:200px; 
+    max-height:400px;      /* Scrollable height */
+    overflow-y:auto;        /* Enable vertical scrollbar */
+    word-wrap:break-word; 
+}
+a.backLink { 
+    display:inline-block; 
+    margin-bottom:10px; 
+    text-decoration:none; 
+    color:white; 
+    background:#007BFF; 
+    padding:6px 12px; 
+    border-radius:5px;
+}
+a.backLink:hover { 
+    background:#0056b3; 
+}
 </style>
 </head>
 <body>
