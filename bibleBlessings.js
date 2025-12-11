@@ -1,184 +1,183 @@
 const dailyLift = {
-  "Genesis": [
-    {
-      verse: "Genesis 12:2 — I will bless thee, and make thy name great.",
-      prayer: "Lord, let Your blessing shape my purpose and destiny.",
-      notes: "God calls and blesses those who walk in faith."
-    },
-    {
-      verse: "Genesis 28:15 — I am with thee, and will keep thee in all places.",
-      prayer: "Father, remind me that You are always with me.",
-      notes: "God’s protection is constant wherever we go."
-    },
-    {
-      verse: "Genesis 50:20 — God meant it unto good.",
-      prayer: "Lord, turn every challenge into testimony.",
-      notes: "God can transform evil intentions into good outcomes."
-    }
-  ],
+  "Genesis": [
+    {
+      verse: "Genesis 12:2 — I will bless thee, and make thy name great.",
+      prayer: "Lord, let Your blessing shape my purpose and destiny.",
+      notes: "God calls and blesses those who walk in faith."
+    },
+    {
+      verse: "Genesis 28:15 — I am with thee, and will keep thee in all places.",
+      prayer: "Father, remind me that You are always with me.",
+      notes: "God’s protection is constant wherever we go."
+    },
+    {
+      verse: "Genesis 50:20 — God meant it unto good.",
+      prayer: "Lord, turn every challenge into testimony.",
+      notes: "God can transform evil intentions into good outcomes."
+    }
+  ],
 
-  "Exodus": [
-    {
-      verse: "Exodus 15:2 — The Lord is my strength and song.",
-      prayer: "Lord, be my strength when I feel weak.",
-      notes: "Worship reminds us of God’s power and salvation."
-    },
-    {
-      verse: "Exodus 33:14 — My presence shall go with thee.",
-      prayer: "Father, let Your presence guide every step I take.",
-      notes: "God’s presence brings rest and confidence."
-    },
-    {
-      verse: "Exodus 34:6 — The Lord is merciful and gracious.",
-      prayer: "Lord, help me reflect Your mercy to others.",
-      notes: "God’s nature is compassion and forgiveness."
-    }
-  ],
+  "Exodus": [
+    {
+      verse: "Exodus 15:2 — The Lord is my strength and song.",
+      prayer: "Lord, be my strength when I feel weak.",
+      notes: "Worship reminds us of God’s power and salvation."
+    },
+    {
+      verse: "Exodus 33:14 — My presence shall go with thee.",
+      prayer: "Father, let Your presence guide every step I take.",
+      notes: "God’s presence brings rest and confidence."
+    },
+    {
+      verse: "Exodus 34:6 — The Lord is merciful and gracious.",
+      prayer: "Lord, help me reflect Your mercy to others.",
+      notes: "God’s nature is compassion and forgiveness."
+    }
+  ],
 
-  "Leviticus": [
-    {
-      verse: "Leviticus 20:26 — Ye shall be holy unto me.",
-      prayer: "Lord, help me live a life set apart for You.",
-      notes: "Holiness is about belonging entirely to God."
-    },
-    {
-      verse: "Leviticus 26:9 — I will have respect unto you.",
-      prayer: "Father, let Your favor rest upon my life.",
-      notes: "God honors those who walk faithfully with Him."
-    },
-    {
-      verse: "Leviticus 18:5 — If a man do, he shall live in them.",
-      prayer: "Lord, help me obey Your Word wholeheartedly.",
-      notes: "God’s commandments lead to life and blessing."
-    }
-  ],
+  "Leviticus": [
+    {
+      verse: "Leviticus 20:26 — Ye shall be holy unto me.",
+      prayer: "Lord, help me live a life set apart for You.",
+      notes: "Holiness is about belonging entirely to God."
+    },
+    {
+      verse: "Leviticus 26:9 — I will have respect unto you.",
+      prayer: "Father, let Your favor rest upon my life.",
+      notes: "God honors those who walk faithfully with Him."
+    },
+    {
+      verse: "Leviticus 18:5 — If a man do, he shall live in them.",
+      prayer: "Lord, help me obey Your Word wholeheartedly.",
+      notes: "God’s commandments lead to life and blessing."
+    }
+  ],
 
-  "Numbers": [
-    {
-      verse: "Numbers 11:23 — Is the Lord's hand waxed short?",
-      prayer: "Lord, remind me that nothing is impossible for You.",
-      notes: "God’s power has no limit or restriction."
-    },
-    {
-      verse: "Numbers 14:9 — The Lord is with us: fear them not.",
-      prayer: "Father, remove fear from my heart today.",
-      notes: "God’s presence is greater than any opposition."
-    },
-    {
-      verse: "Numbers 21:34 — Fear him not: for I have delivered him into thy hand.",
-      prayer: "Lord, give me courage to face every challenge.",
-      notes: "God gives victory before the battle even begins."
-    }
-  ],
+  "Numbers": [
+    {
+      verse: "Numbers 11:23 — Is the Lord's hand waxed short?",
+      prayer: "Lord, remind me that nothing is impossible for You.",
+      notes: "God’s power has no limit or restriction."
+    },
+    {
+      verse: "Numbers 14:9 — The Lord is with us: fear them not.",
+      prayer: "Father, remove fear from my heart today.",
+      notes: "God’s presence is greater than any opposition."
+    },
+    {
+      verse: "Numbers 21:34 — Fear him not: for I have delivered him into thy hand.",
+      prayer: "Lord, give me courage to face every challenge.",
+      notes: "God gives victory before the battle even begins."
+    }
+  ],
 
-  "Deuteronomy": [
-    {
-      verse: "Deuteronomy 4:7 — What nation hath God so nigh unto them?",
-      prayer: "Lord, help me appreciate Your closeness and care.",
-      notes: "God stays near to His children when they call on Him."
-    },
-    {
-      verse: "Deuteronomy 7:9 — He is the faithful God.",
-      prayer: "Father, help me trust Your faithfulness daily.",
-      notes: "God remains faithful even when we struggle."
-    },
-    {
-      verse: "Deuteronomy 28:8 — The Lord shall command the blessing upon thee.",
-      prayer: "Lord, command Your blessings over the work of my hands.",
-      notes: "God's blessings bring increase and success."
-    }
-  ],
+  "Deuteronomy": [
+    {
+      verse: "Deuteronomy 4:7 — What nation hath God so nigh unto them?",
+      prayer: "Lord, help me appreciate Your closeness and care.",
+      notes: "God stays near to His children when they call on Him."
+    },
+    {
+      verse: "Deuteronomy 7:9 — He is the faithful God.",
+      prayer: "Father, help me trust Your faithfulness daily.",
+      notes: "God remains faithful even when we struggle."
+    },
+    {
+      verse: "Deuteronomy 28:8 — The Lord shall command the blessing upon thee.",
+      prayer: "Lord, command Your blessings over the work of my hands.",
+      notes: "God's blessings bring increase and success."
+    }
+  ],
 
-  "Joshua": [
-    {
-      verse: "Joshua 10:25 — Fear not, nor be dismayed.",
-      prayer: "Lord, give me boldness to move forward in faith.",
-      notes: "God encourages His people to be fearless."
-    },
-    {
-      verse: "Joshua 21:45 — There failed not ought of any good thing.",
-      prayer: "Father, let Your promises stand firm in my life.",
-      notes: "God fulfills every promise in His perfect timing."
-    },
-    {
-      verse: "Joshua 23:11 — Take good heed to love the Lord.",
-      prayer: "Lord, teach me to love You more each day.",
-      notes: "Love for God keeps our hearts aligned with His will."
-    }
-  ],
+  "Joshua": [
+    {
+      verse: "Joshua 10:25 — Fear not, nor be dismayed.",
+      prayer: "Lord, give me boldness to move forward in faith.",
+      notes: "God encourages His people to be fearless."
+    },
+    {
+      verse: "Joshua 21:45 — There failed not ought of any good thing.",
+      prayer: "Father, let Your promises stand firm in my life.",
+      notes: "God fulfills every promise in His perfect timing."
+    },
+    {
+      verse: "Joshua 23:11 — Take good heed to love the Lord.",
+      prayer: "Lord, teach me to love You more each day.",
+      notes: "Love for God keeps our hearts aligned with His will."
+    }
+  ],
 
-  "Judges": [
-    {
-      verse: "Judges 2:18 — The Lord was with the judge, and delivered them.",
-      prayer: "Lord, deliver me from every situation that overwhelms me.",
-      notes: "God raises deliverers in times of trouble."
-    },
-    {
-      verse: "Judges 10:16 — His soul was grieved for the misery of Israel.",
-      prayer: "Father, thank You for caring about my pain.",
-      notes: "God is moved by the suffering of His people."
-    },
-    {
-      verse: "Judges 13:24 — The child grew, and the Lord blessed him.",
-      prayer: "Lord, bless my growth spiritually and in life.",
-      notes: "God’s blessing shapes our future."
-    }
-  ],
+  "Judges": [
+    {
+      verse: "Judges 2:18 — The Lord was with the judge, and delivered them.",
+      prayer: "Lord, deliver me from every situation that overwhelms me.",
+      notes: "God raises deliverers in times of trouble."
+    },
+    {
+      verse: "Judges 10:16 — His soul was grieved for the misery of Israel.",
+      prayer: "Father, thank You for caring about my pain.",
+      notes: "God is moved by the suffering of His people."
+    },
+    {
+      verse: "Judges 13:24 — The child grew, and the Lord blessed him.",
+      prayer: "Lord, bless my growth spiritually and in life.",
+      notes: "God’s blessing shapes our future."
+    }
+  ],
 
-  "Ruth": [
-    {
-      verse: "Ruth 3:11 — All the city doth know that thou art a virtuous woman.",
-      prayer: "Father, help me walk in integrity and honor.",
-      notes: "A life of character speaks louder than words."
-    },
-    {
-      verse: "Ruth 4:14 — Blessed be the Lord, which hath not left thee.",
-      prayer: "Lord, thank You for never forsaking me.",
-      notes: "God restores what seems lost."
-    },
-    {
-      verse: "Ruth 2:20 — The man is near of kin unto us.",
-      prayer: "Lord, thank You for sending destiny helpers.",
-      notes: "God connects us with the right people at the right time."
-    }
-  ],
+  "Ruth": [
+    {
+      verse: "Ruth 3:11 — All the city doth know that thou art a virtuous woman.",
+      prayer: "Father, help me walk in integrity and honor.",
+      notes: "A life of character speaks louder than words."
+    },
+    {
+      verse: "Ruth 4:14 — Blessed be the Lord, which hath not left thee.",
+      prayer: "Lord, thank You for never forsaking me.",
+      notes: "God restores what seems lost."
+    },
+    {
+      verse: "Ruth 2:20 — The man is near of kin unto us.",
+      prayer: "Lord, thank You for sending destiny helpers.",
+      notes: "God connects us with the right people at the right time."
+    }
+  ],
 
-  "1 Samuel": [
-    {
-      verse: "1 Samuel 12:22 — The Lord will not forsake His people.",
-      prayer: "Lord, anchor my heart in Your unfailing love.",
-      notes: "God’s commitment to His people is unshakable."
-    },
-    {
-      verse: "1 Samuel 2:9 — He will keep the feet of his saints.",
-      prayer: "Father, keep me steady in my walk with You.",
-      notes: "God guards the paths of the righteous."
-    },
-    {
-      verse: "1 Samuel 30:8 — Pursue, for thou shalt surely overtake.",
-      prayer: "Lord, empower me to recover whatever I’ve lost.",
-      notes: "God grants supernatural recovery."
-    }
-  ],
+  "1 Samuel": [
+    {
+      verse: "1 Samuel 12:22 — The Lord will not forsake His people.",
+      prayer: "Lord, anchor my heart in Your unfailing love.",
+      notes: "God’s commitment to His people is unshakable."
+    },
+    {
+      verse: "1 Samuel 2:9 — He will keep the feet of his saints.",
+      prayer: "Father, keep me steady in my walk with You.",
+      notes: "God guards the paths of the righteous."
+    },
+    {
+      verse: "1 Samuel 30:8 — Pursue, for thou shalt surely overtake.",
+      prayer: "Lord, empower me to recover whatever I’ve lost.",
+      notes: "God grants supernatural recovery."
+    }
+  ],
 
-  "2 Samuel": [
-    {
-      verse: "2 Samuel 22:33 — God is my strength and power.",
-      prayer: "Lord, strengthen me in every weak area.",
-      notes: "God enables us to stand firm and overcome."
-    },
-    {
-      verse: "2 Samuel 22:31 — He is a buckler to all them that trust in Him.",
-      prayer: "Father, shield me from all harm as I trust You.",
-      notes: "God defends those who rely on Him."
-    },
-    {
-      verse: "2 Samuel
- 7:29 — Let the blessing of the Lord be upon thy house.",
-      prayer: "Lord, let Your blessing fill my home.",
-      notes: "God delights in blessing families."
-    }
-  ],
+  "2 Samuel": [
+    {
+      verse: "2 Samuel 22:33 — God is my strength and power.",
+      prayer: "Lord, strengthen me in every weak area.",
+      notes: "God enables us to stand firm and overcome."
+    },
+    {
+      verse: "2 Samuel 22:31 — He is a buckler to all them that trust in Him.",
+      prayer: "Father, shield me from all harm as I trust You.",
+      notes: "God defends those who rely on Him."
+    },
+    {
+      verse: "2 Samuel 7:29 — Let the blessing of the Lord be upon thy house.",
+      prayer: "Lord, let Your blessing fill my home.",
+      notes: "God delights in blessing families."
+    }
+  ],
   
   "1 Kings": [
   {
@@ -359,8 +358,8 @@ const dailyLift = {
     notes: "God’s wisdom leads to success and understanding."
   }
 ],
-  
-  "Ecclesiastes": [
+
+"Ecclesiastes": [
   {
     verse: "Ecclesiastes 3:1 — To everything there is a season.",
     prayer: "Lord, help me embrace every season of life with faith.",
@@ -539,7 +538,8 @@ const dailyLift = {
     notes: "God calls His people to pursue righteousness and goodness."
   }
 ],
-  "Obadiah": [
+
+"Obadiah": [
   {
     verse: "Obadiah 1:17 — The house of Jacob shall possess their possessions.",
     prayer: "Lord, help me reclaim and enjoy all You have promised me.",
@@ -700,8 +700,7 @@ const dailyLift = {
     notes: "God is faithful and consistent in all His ways."
   }
 ],
-
-  "Matthew": [
+"Matthew": [
   {
     verse: "Matthew 5:16 — Let your light so shine before men.",
     prayer: "Lord, help me reflect Your light in all I do.",
@@ -880,8 +879,7 @@ const dailyLift = {
     notes: "God’s power exceeds all human understanding."
   }
 ],
-
-  "Philippians": [
+"Philippians": [
   {
     verse: "Philippians 4:13 — I can do all things through Christ which strengtheneth me.",
     prayer: "Lord, empower me to face every challenge through Your strength.",
@@ -952,8 +950,7 @@ const dailyLift = {
     notes: "God empowers us to remain steadfast."
   }
 ],
-  
- "1 Timothy": [
+"1 Timothy": [
   {
     verse: "1 Timothy 4:12 — Let no man despise thy youth; but be thou an example of the believers.",
     prayer: "Lord, help me live as a godly example in all I do.",
@@ -1042,8 +1039,7 @@ const dailyLift = {
     notes: "Patience and perseverance lead to ultimate reward."
   }
 ],
-  
- "James": [
+"James": [
   {
     verse: "James 1:5 — If any of you lack wisdom, let him ask of God.",
     prayer: "Lord, grant me wisdom in every decision I make.",
