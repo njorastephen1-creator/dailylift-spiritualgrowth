@@ -1151,4 +1151,5 @@ e not.",
     prayer: "Lord, keep me ready and faithful for Your return.",
     notes: "Believers are called to live in anticipation of Christ’s coming."
   }
-];
+]
+};
