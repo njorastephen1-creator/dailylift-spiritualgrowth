@@ -4,6 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Lift — Bible</title>
+
+<!-- INLINE PROTECTION CSS -->
+<style>
+  /* Disable image dragging */
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+
+  /* Popup Warning */
+  #warningPopup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    color: #777;
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer a {
+    color: #555;
+    text-decoration: none;
+    margin: 0 4px;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<!-- INLINE ANTI-COPY JS -->
+<script>
+  // Disable Right Click
+  document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    showWarning();
+  });
+
+  // Disable Text Selection
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.userSelect = "none";
+  });
+
+  // Disable Key Shortcuts (Ctrl+C, Ctrl+U, etc.)
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && ['u','c','s','x','a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+      showWarning();
+    }
+  });
+
+  // Popup warning
+  function showWarning() {
+    const popup = document.getElementById("warningPopup");
+    popup.style.display = "block";
+    setTimeout(() => popup.style.display = "none", 1800);
+  }
+</script>
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,6 +111,17 @@
 
   <div id="bubbles"></div>
 </div>
+
+<!-- Popup Warning -->
+<div id="warningPopup">Copying is disabled on Daily Lift.</div>
+
+<!-- INLINE FOOTER -->
+<footer class="footer">
+  <p>© 2025 Daily Lift. All Rights Reserved.</p>
+  <a href="terms.html">Terms & Conditions</a> |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="copyright.html">Copyright Policy</a>
+</footer>
 
 <script src="bibleBlessings.js"></script>
 <script src="script.js"></script>
