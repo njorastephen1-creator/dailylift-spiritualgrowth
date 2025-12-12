@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback — Daily Lift</title>
+
+<style>
+  body { font-family: Arial, sans-serif; line-height: 1.7; color: #333; margin: 0; padding: 0; background-color: #f9f2e7; }
+  .container { max-width: 700px; margin: 40px auto; padding: 30px 40px; background-color: rgba(255,255,255,0.95); border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);}
+  h1,h2,h3 { text-align:center; color:#222; margin-bottom:20px; }
+  label { display:block; margin-bottom:6px; font-weight:bold; }
+  input[type="text"],textarea { width:100%; padding:10px; margin-bottom:18px; border:1px solid #ccc; border-radius:6px; font-size:14px; }
+  textarea { resize: vertical; min-height:100px; }
+  button { background-color:#d2691e; color:white; border:none; padding:10px 20px; border-radius:6px; font-size:14px; cursor:pointer; margin-left:5px; }
+  button:hover { background-color:#b55b16; }
+  a { display:block; margin-top:20px; text-align:center; color:#d2691e; font-weight:bold; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .feedback-list { margin-top:30px; }
+  .feedback-list ul, .recent-feedbacks ul { list-style-type:disc; padding-left:20px; }
+  .feedback-list li, .recent-feedbacks li { margin-bottom:12px; position:relative; }
+  .recent-feedbacks { margin-top:20px; padding:15px; background-color:#fff3e0; border-radius:8px; max-height:300px; overflow-y:auto; }
+  .footer { text-align:center; padding:15px 0; font-size:14px; color:#777; margin-top:30px; border-top:1px solid #ccc; }
+  .footer a { color:#d2691e; text-decoration:none; margin:0 4px; }
+  .footer a:hover { text-decoration:underline; }
+  .modal { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.5);}
+  .modal-content { background-color:#fff; margin:15% auto; padding:20px; border-radius:10px; width:90%; max-width:400px; box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+  .modal input[type="text"], .modal textarea { width:100%; margin-bottom:15px; }
+  .modal-buttons { text-align:right; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Feedback</h1>
+  <p>We’d love to hear from you! Please share your thoughts below.</p>
+
+  <form id="feedbackForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Your name..." required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" placeholder="Write your message here..." required></textarea>
+
+    <button type="submit">Submit Feedback</button>
+  </form>
+
+  <div class="recent-feedbacks">
+    <h3>Recent Feedback</h3>
+    <ul id="recentFeedbackList"></ul>
+  </div>
+
+  <a href="index.html">← Back to Home</a>
+
+  <div class="feedback-list">
+    <h2>All User Feedbacks (Last 3 Months)</h2>
+    <ul id="feedbackDisplay"></ul>
+  </div>
+</div>
+
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <h3>Edit Feedback</h3>
+    <input type="text" id="editName" placeholder="Your name" required>
+    <textarea id="editMessage" placeholder="Your message" required></textarea>
+    <div class="modal-buttons">
+      <button id="saveEdit">Save</button>
+      <button id="cancelEdit">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2025 Daily Lift. All Rights Reserved.</p>
+  <a href="about.html">About Us</a> |
+  <a href="feedback.html">Feedback</a> |
+  <a href="terms.html">Terms & Conditions</a> |
+  <a href="privacy.html">Privacy Policy</a> |
+  <a href="copyright.html">Copyright Policy</a>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyANCOhXY4p8LJw3hQ-AlwcKhMkMroS_6qM",
+  authDomain: "daily-lift-3504b.firebaseapp.com",
+  projectId: "daily-lift-3504b",
+  storageBucket: "daily-lift-3504b.firebasestorage.app",
+  messagingSenderId: "754837797426",
+  appId: "1:754837797426:web:3ae8249b2ff5e8dd379a2b",
+  measurementId: "G-WLRG5HPFZ6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const form = document.getElementById('feedbackForm');
+const display = document.getElementById('feedbackDisplay');
+const recentList = document.getElementById('recentFeedbackList');
+const editModal = document.getElementById('editModal');
+const editName = document.getElementById('editName');
+const editMessage = document.getElementById('editMessage');
+const saveEdit = document.getElementById('saveEdit');
+const cancelEdit = document.getElementById('cancelEdit');
+let editId = null;
+
+// Track user's own feedbacks
+let myFeedbacks = JSON.parse(localStorage.getItem('myFeedbacks')) || [];
+
+// Submit new feedback
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if(name && message){
+    const feedbackId = Date.now();
+    const fbData = { id: feedbackId, name, message, timestamp: Date.now() };
+
+    myFeedbacks.push(feedbackId);
+    localStorage.setItem('myFeedbacks', JSON.stringify(myFeedbacks));
+
+    set(ref(db, 'feedbacks/' + feedbackId), fbData)
+      .then(() => {
+        appendFeedback(fbData);
+        appendRecentFeedback(fbData, true);
+      });
+
+    form.reset();
+    alert("Thank you for your feedback!");
+  }
+});
+
+// Listen for updates
+const feedbackRef = ref(db, 'feedbacks');
+onValue(feedbackRef, snapshot => {
+  display.innerHTML = '';
+  recentList.innerHTML = '';
+
+  const data = snapshot.val();
+  if(!data) return;
+
+  const now = Date.now();
+  const threeMonths = 1000 * 60 * 60 * 24 * 90;
+  const cutoff = now - threeMonths;
+
+  const feedbackArray = Object.values(data)
+    .filter(fb => fb.timestamp >= cutoff)
+    .sort((a,b) => b.timestamp - a.timestamp);
+
+  // Show latest 3 feedbacks in Recent Feedback
+  let recentCount = 0;
+  feedbackArray.forEach(fb => {
+    appendFeedback(fb);
+    if(recentCount < 3){
+      appendRecentFeedback(fb);
+      recentCount++;
+    }
+  });
+});
+
+// Append to All Feedbacks
+function appendFeedback(fb){
+  const li = document.createElement('li');
+  li.setAttribute('data-id', fb.id);
+  li.innerHTML = `<strong>${fb.name}:</strong> "${fb.message}"`;
+
+  const isOwner = myFeedbacks.includes(fb.id);
+  const isAdmin = true;
+
+  if(isOwner || isAdmin){
+    const editBtn = document.createElement('button');
+    editBtn.textContent = "Edit";
+    editBtn.style.marginLeft = "10px";
+    editBtn.addEventListener('click', () => openEditModal(fb.id));
+    li.appendChild(editBtn);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "5px";
+    deleteBtn.addEventListener('click', () => deleteFeedbackFirebase(fb.id));
+    li.appendChild(deleteBtn);
+  }
+
+  display.appendChild(li);
+}
+
+// Append to Recent Feedback
+function appendRecentFeedback(fb){
+  const li = document.createElement('li');
+  li.innerHTML = `<strong>${fb.name}:</strong> "${fb.message}"`;
+
+  const isOwner = myFeedbacks.includes(fb.id);
+  const isAdmin = true;
+
+  if(isOwner || isAdmin){
+    const editBtn = document.createElement('button');
+    editBtn.textContent = "Edit";
+    editBtn.style.marginLeft = "10px";
+    editBtn.addEventListener('click', () => openEditModal(fb.id));
+    li.appendChild(editBtn);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "5px";
+    deleteBtn.addEventListener('click', () => deleteFeedbackFirebase(fb.id));
+    li.appendChild(deleteBtn);
+  }
+
+  recentList.appendChild(li);
+  li.style.backgroundColor = "#ffe0b2";
+  setTimeout(() => li.style.backgroundColor = "transparent", 1500);
+}
+
+// Edit modal
+function openEditModal(id){
+  const fbRef = ref(db, 'feedbacks/' + id);
+  fbRef.get().then(snapshot => {
+    if(snapshot.exists()){
+      const fb = snapshot.val();
+      editId = fb.id;
+      editName.value = fb.name;
+      editMessage.value = fb.message;
+      editModal.style.display = 'block';
+    }
+  });
+}
+
+saveEdit.addEventListener('click', ()=>{
+  if(editName.value.trim() && editMessage.value.trim() && editId){
+    update(ref(db, 'feedbacks/' + editId), {
+      name: editName.value.trim(),
+      message: editMessage.value.trim()
+    });
+    editModal.style.display = 'none';
+  }
+});
+
+cancelEdit.addEventListener('click', ()=> editModal.style.display = 'none');
+
+function deleteFeedbackFirebase(id){
+  if(confirm("Are you sure you want to delete this feedback?")){
+    remove(ref(db, 'feedbacks/' + id));
+    myFeedbacks = myFeedbacks.filter(f => f !== id);
+    localStorage.setItem('myFeedbacks', JSON.stringify(myFeedbacks));
+  }
+}
+
+window.addEventListener('click', e => {
+  if(e.target === editModal) editModal.style.display = 'none';
+});
+</script>
+</body>
+</html>
